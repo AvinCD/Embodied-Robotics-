@@ -234,7 +234,7 @@ Unlike traditional AI-only systems, this project focuses on ensuring that AI-gen
 ## To Complete
 
 * ROS2 AMR bringup
-* Lidar integration
+* Lidar integration - Done as of June 2 
 * Nav2 autonomous navigation
 * Waypoint navigation
 * Recovery behavior testing
