@@ -237,6 +237,13 @@ Unlike traditional AI-only systems, this project focuses on ensuring that AI-gen
 * Lidar integration - Done as of June 2 
 * Nav2 autonomous navigation
 * Waypoint navigation
+ As of June 3
+[Localization     85%
+Mapping          90%
+Lidar            95%
+Depth Camera     75%
+Navigation       60-70%
+Obstacle Avoid   50-60% ]
 * Recovery behavior testing
 * Localization setup
 * ROS2 communication framework
