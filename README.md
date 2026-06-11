@@ -244,6 +244,8 @@ Lidar            95%
 Depth Camera     75%
 Navigation       60-70%
 Obstacle Avoid   50-60% ]
+As of June 11
+(Planner fails → recovery starts → spin/backup fails → robot gives up)
 * Recovery behavior testing
 * Localization setup
 * ROS2 communication framework
