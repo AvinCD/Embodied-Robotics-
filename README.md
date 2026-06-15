@@ -248,7 +248,7 @@ As of June 11
 (Planner fails → recovery starts → spin/backup fails → robot gives up)
 * Recovery behavior testing
 * Localization setup
-* ROS2 communication framework
+* ROS2 communication framework ( Done as of June 15)
 * Gemini reasoning integration
 * Safety supervisor implementation
 * Display interface
