@@ -73,7 +73,7 @@ The main objectives of this project are:
                 └─────────┬──────────┘
                           │
                 ┌─────────▼──────────┐
-                │ AgileX Ranger AMR  │
+                │ Ranger AMR         │
                 └────────────────────┘
 ```
 
@@ -249,6 +249,7 @@ As of June 11
 * Recovery behavior testing
 * Localization setup
 * ROS2 communication framework ( Done as of June 15)
+* Basic Voice Integration ( Done as of JUne 16) 
 * Gemini reasoning integration
 * Safety supervisor implementation
 * Display interface
