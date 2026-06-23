@@ -263,6 +263,22 @@ As of June 11
 
 ---
 
+
+Imediate Work - June 23 
+
+Voice command
+   ↓
+Gemini understands destination
+   ↓
+Mission manager sends Nav2 goal
+   ↓
+Robot navigates
+   ↓
+TTS/display explains mission status
+   ↓
+On failure, robot safely stops and explains why
+---
+
 # Expected Outcome
 
 The final system will demonstrate:
