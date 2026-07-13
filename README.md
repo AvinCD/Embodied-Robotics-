@@ -277,6 +277,16 @@ Robot navigates
 TTS/display explains mission status
    ↓
 On failure, robot safely stops and explains why
+
+------------------------------------------------
+Workdone as of July 13
+ROS 2 Nav2 stack
+Offline dashboard
+Voice assistant
+Local Ollama LLM
+Piper voice
+Waypoints foundation
+Gemini Robotics-ER snapshot reasoning
 ---
 
 # Expected Outcome
