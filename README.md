@@ -2,308 +2,76 @@
 
 ## Overview
 
-This project presents a ROS2-based Autonomous Mobile Robot (AMR) framework that integrates:
+This project presents a ROS 2-based Autonomous Mobile Robot framework that integrates reliable autonomous navigation with an advisory embodied AI reasoning layer and explainable human-robot interaction.
 
-* Autonomous navigation using ROS2 Nav2
-* Embodied AI reasoning using Gemini AI
-* Verified safety supervision
-* Explainable human-robot interaction
+The system combines:
 
-The objective of this project is to develop a mobile robot capable of:
+- Autonomous navigation using ROS 2 Nav2
+- 2D LiDAR-based mapping and localisation
+- Event-based visual reasoning using Gemini Robotics-ER / Gemini AI
+- Voice explanation using offline text-to-speech
+- Local dashboard for robot status and transparency
+- Safety-aware system design where AI does not directly control robot motion
 
-1. Navigating autonomously in dynamic environments
-2. Explaining its decisions in real time
-3. Safely handling unexpected obstacles and failures
-4. Improving human trust through transparent robot reasoning
+The objective of this project is to develop an AMR capable of navigating in indoor environments while clearly explaining its status, visual observations, and navigation-related events to users.
 
-Unlike traditional autonomous robots that operate as black-box systems, this project focuses on combining AI reasoning with safe and explainable robot execution.
-
----
-
-# Project Motivation
-
-Recent developments in embodied AI and Vision-Language Models (VLMs), such as Gemini Robotics AI, allow robots to reason about environments before acting.
-
-However, many current AI robotic systems:
-
-* lack verified safety constraints,
-* do not explain robot decisions clearly,
-* and cannot guarantee safe execution on real mobile platforms.
-
-This project addresses these limitations by integrating:
-
-* AI reasoning,
-* ROS2 autonomous navigation,
-* and a verified safety layer
-
-into a single explainable robotic framework.
+Unlike traditional autonomous robots that operate as black-box systems, this project focuses on explainable and safety-conscious robot behaviour.
 
 ---
 
-# Project Objectives
+## Project Motivation
+
+Autonomous Mobile Robots are increasingly used in indoor environments such as hospitals, laboratories, smart buildings, warehouses, and service spaces.
+
+Conventional AMRs can localise, plan, and avoid obstacles using maps, LiDAR, costmaps, and path planners. However, they usually do not explain their actions in a human-friendly way.
+
+For example, a robot may stop because of a blocked path, localisation uncertainty, or planning failure, but the user may not know why.
+
+Recent advances in embodied AI and Vision-Language Models allow robots to interpret visual scenes and generate meaningful explanations. However, directly connecting AI reasoning to robot motion creates safety risks.
+
+This project addresses the gap by separating:
+
+- Physical movement authority, handled by ROS 2 Nav2
+- High-level visual reasoning, handled by Gemini AI
+- Human-facing explanation, handled through dashboard and voice output
+
+The main motivation is to improve human trust and transparency while keeping robot motion under deterministic local control.
+
+---
+
+## Project Objectives
 
 The main objectives of this project are:
 
-* Develop a stable ROS2 autonomous navigation system
-* Integrate Gemini AI as a high-level reasoning layer
-* Design a safety verification layer for robot execution
-* Display robot reasoning transparently to nearby users
-* Improve human trust and interaction with autonomous robots
+- Develop a stable ROS 2 autonomous navigation system
+- Integrate 2D LiDAR for mapping, localisation, and obstacle sensing
+- Use Nav2 for safe autonomous movement
+- Use Gemini AI as an event-based visual reasoning layer
+- Provide transparent robot explanations through voice and dashboard
+- Keep AI advisory output separate from physical robot control
+- Demonstrate a working proof-of-concept AMR system
 
 ---
 
-# Proposed System Architecture
+## System Architecture
 
----
-                ┌────────────────────┐
-                │ Gemini AI Reasoning│
-                │  Embodied Thinking │
-                └─────────┬──────────┘
-                          │
-            High-Level Reasoning Output
-                          │
-                ┌─────────▼──────────┐
-                │ Safety Supervisor  │
-                │ Verified Execution │
-                └─────────┬──────────┘
-                          │
-                ┌─────────▼──────────┐
-                │ ROS2 Nav2 Stack    │
-                │ Localization + Nav │
-                └─────────┬──────────┘
-                          │
-                ┌─────────▼──────────┐
-                │ Ranger AMR         │
-                └────────────────────┘
-```
-
----
-
-# Key Features
-
-## 1. ROS2 Autonomous Navigation
-
-The robot uses:
-
-* ROS2 Humble
-* Nav2
-* AMCL localization
-* 2D Lidar 
-* waypoint-based navigation
-
-for autonomous movement and obstacle avoidance.
-
----
-
-## 2. Embodied AI Reasoning
-
-Gemini AI is used as a semantic reasoning layer.
-
-The AI:
-
-* interprets environmental situations,
-* explains robot decisions,
-* identifies navigation failures,
-* and proposes recovery behaviors.
-
-Example reasoning output:
+The system follows a layered architecture.
 
 ```
-Obstacle detected ahead.
-Primary route blocked.
-Searching for alternative safe route.
-```
+Human Interaction Layer
+Voice output, dashboard, onboard display
 
-Important:
-**Gemini AI does NOT directly control the robot motors.**
+Gemini AI Reasoning Layer
+Event-based visual scene interpretation and advisory explanation
 
-It only provides:
+Mission / Status Management Layer
+Tracks robot state, activity, and approved system events
 
-* reasoning,
-* explanations,
-* and high-level decision suggestions.
+Safety Boundary
+Prevents AI from directly controlling robot motion
 
----
+ROS 2 / Nav2 Execution Layer
+Map server, AMCL, costmaps, planner, controller, recovery behaviours
 
-## 3. Safety Verification Layer
-
-A safety supervisor layer is implemented between the AI and the robot navigation stack.
-
-The purpose of this layer is to:
-
-* enforce velocity limits,
-* verify safe navigation behavior,
-* reject unsafe actions,
-* and maintain collision-free operation.
-
-This prevents unsafe AI-generated behaviors from being executed directly on the physical robot.
-
----
-
-## 4. Explainable Robot Display
-
-The robot includes a display interface that shows:
-
-* current navigation goals,
-* robot state,
-* AI reasoning,
-* and recovery explanations.
-
-This improves:
-
-* transparency,
-* predictability,
-* and human trust.
-
-Example:
-
-```
-Current Goal: Station B
-Obstacle detected.
-Alternative route selected.
-Proceeding safely.
-```
-
----
-
-# Proposed Scenario
-
-## Autonomous Hospital / Laboratory Delivery Assistant
-
-The robot autonomously transports:
-
-* medicine,
-* lab samples,
-* or medical tools
-
-between predefined stations.
-
-During navigation:
-
-* people may block corridors,
-* objects may obstruct pathways,
-* or localization failures may occur.
-
-The robot:
-
-1. detects the issue,
-2. reasons about the situation,
-3. safely replans navigation,
-4. explains the reasoning on the display,
-5. and completes the mission safely.
-
----
-
-# Research Contribution
-
-This project contributes a framework that combines:
-
-* embodied AI reasoning,
-* verified autonomous navigation,
-* and explainable human-robot interaction.
-
-Unlike traditional AI-only systems, this project focuses on ensuring that AI-generated decisions are safely executable on a real mobile robotic platform.
-
----
-
-# Hardware Used
-
-* AMR Robot 
-* Intel-based mini PC
-* 2D lidar
-* Display interface
-* Intel depth camera d435i
-
----
-
-# Software Stack
-
-* Ubuntu 22.04
-* ROS2 Humble
-* Nav2
-* AMCL
-* RViz2
-* Python
-* Flask / Web UI
-* Gemini API
-
----
-
-# Current Development Status
-
-## To Complete
-
-* ROS2 AMR bringup
-* Lidar integration - Done as of June 2 
-* Nav2 autonomous navigation
-* Waypoint navigation
- As of June 3
-[Localization     85%
-Mapping          90%
-Lidar            95%
-Depth Camera     75%
-Navigation       60-70%
-Obstacle Avoid   50-60% ]
-As of June 11
-(Planner fails → recovery starts → spin/backup fails → robot gives up)
-* Recovery behavior testing
-* Localization setup
-* ROS2 communication framework ( Done as of June 15)
-* Basic Voice Integration ( Done as of JUne 16) 
-1. Finish simple local speech interaction
-2. Add ROS status replies
-3. Add safe named-station commands
-4. Add UI/UX
-5. Add local LLM for natural language
-6. Add Gemini Robotics-ER for advanced vision/spatial reasoning
-* Gemini reasoning integration
-* Safety supervisor implementation
-* Display interface
-* Human trust evaluation experiments
-
----
-
-
-Imediate Work - June 23 
-
-Voice command
-   ↓
-Gemini understands destination
-   ↓
-Mission manager sends Nav2 goal
-   ↓
-Robot navigates
-   ↓
-TTS/display explains mission status
-   ↓
-On failure, robot safely stops and explains why
-
-------------------------------------------------
-Workdone as of July 13
-ROS 2 Nav2 stack
-Offline dashboard
-Voice assistant
-Local Ollama LLM
-Piper voice
-Waypoints foundation
-Gemini Robotics-ER snapshot reasoning
----
-
-# Expected Outcome
-
-The final system will demonstrate:
-
-* autonomous ROS2 navigation,
-* AI-assisted reasoning,
-* safe recovery behaviors,
-* transparent robot explanations,
-* and improved human-robot interaction.
-
----
-
-# Author
-
-Aravind Kalai
-
-Final Year Project - SUTD
-Robotics 
+Robot and Sensor Layer
+AMR base, 2D LiDAR, depth camera, odometry, compute, speaker, display
